@@ -53,7 +53,7 @@ lazy_static::lazy_static! {
         Some(key) => key,
         _ => "",
     }.to_owned()));
-    pub static ref APP_NAME: Arc<RwLock<String>> = Arc::new(RwLock::new("RustDesk".to_owned()));
+    pub static ref APP_NAME: Arc<RwLock<String>> = Arc::new(RwLock::new("HiDesk".to_owned()));
     static ref KEY_PAIR: Arc<Mutex<Option<(Vec<u8>, Vec<u8>)>>> = Default::default();
     static ref HW_CODEC_CONFIG: Arc<RwLock<HwCodecConfig>> = Arc::new(RwLock::new(HwCodecConfig::load()));
 }
@@ -81,10 +81,10 @@ const CHARS: &'static [char] = &[
 ];
 
 const RENDEZVOUS_SERVERS: &'static [&'static str] = &[
-    "rs-ny.rustdesk.com",
     "rs-sg.rustdesk.com",
     "rs-cn.rustdesk.com",
-];
+    "rs-us.rustdesk.com",
+  ];
 
 pub const RS_PUB_KEY: &'static str = match option_env!("RS_PUB_KEY") {
     Some(key) => key,

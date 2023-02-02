@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../res/logo-header.svg" alt="RustDesk - Your remote desktop"><br>
+  <img src="../res/logo-header.svg" alt="HiDesk - Your remote desktop"><br>
   <a href="#免费公共服务器">服务器</a> •
   <a href="#基本构建步骤">编译</a> •
   <a href="#使用Docker编译">Docker</a> •
@@ -115,7 +115,7 @@ cargo run
 
 ### 把 Wayland 修改成 X11 (Xorg)
 
-RustDesk 暂时不支持 Wayland，不过正在积极开发中。
+HiDesk 暂时不支持 Wayland，不过正在积极开发中。
 > [点我](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/)
 查看 如何将Xorg设置成默认的GNOME session
 
@@ -166,8 +166,8 @@ docker build -t "rustdesk-builder" . # 构建容器
       docker build -t "rustdesk-builder" . --build-arg http_proxy=http://host:port --build-arg https_proxy=http://host:port
       ```
 
-### 构建RustDesk程序
-容器构建完成后，运行下列指令以完成对RustDesk应用程序的构建：
+### 构建HiDesk程序
+容器构建完成后，运行下列指令以完成对HiDesk应用程序的构建：
 
 ```sh
 docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" rustdesk-builder
@@ -185,9 +185,9 @@ docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user
    > **原因：** 容器的entrypoint脚本会检测UID和GID，在度判和给定的环境变量的不一致时，会强行修改user的UID和GID并重新运行。但在重启后读不到环境中的UID和GID，然后再次进入判错重启环节
 
 
-### 运行RustDesk程序
+### 运行HiDesk程序
 
-生成的可执行程序在target目录下，可直接通过指令运行调试(Debug)版本的RustDesk:
+生成的可执行程序在target目录下，可直接通过指令运行调试(Debug)版本的HiDesk:
 ```sh
 target/debug/rustdesk
 ```
@@ -199,7 +199,7 @@ target/release/rustdesk
 ```
 
 请注意：
-* 请保证您运行的目录是在RustDesk库的根目录内，否则软件会读不到文件。
+* 请保证您运行的目录是在HiDesk库的根目录内，否则软件会读不到文件。
 * `install`、`run`等Cargo的子指令在容器内不可用，宿主机才行。
 
 ## 文件结构

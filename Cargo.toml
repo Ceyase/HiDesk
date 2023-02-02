@@ -33,6 +33,13 @@ mediacodec = ["scrap/mediacodec"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+platform-dirs = "0.3.0"
+rand = "0.8.4"
+protobuf = { version = "3.1", features = ["with-bytes"] }
+tokio = { version = "1.12.0", features = ["full"] }
+tonic = "0.8.3"
+prost = "0.11"
+prost-types = "0.11"
 whoami = "1.2"
 scrap = { path = "libs/scrap", features = ["wayland"] }
 hbb_common = { path = "libs/hbb_common" }
@@ -134,13 +141,14 @@ members = ["libs/scrap", "libs/hbb_common", "libs/enigo", "libs/clipboard", "lib
 [package.metadata.winres]
 LegalCopyright = "Copyright © 2022 Purslane, Inc."
 # this FileDescription overrides package.description
-FileDescription = "RustDesk"
+FileDescription = "HiDesk"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
 winapi = { version = "0.3", features = [ "winnt" ] }
 
 [build-dependencies]
+tonic-build = "0.8.3"
 cc = "1.0"
 hbb_common = { path = "libs/hbb_common" }
 simple_rc = { path = "libs/simple_rc", optional = true }
@@ -150,7 +158,7 @@ flutter_rust_bridge_codegen = { git = "https://github.com/SoLongAndThanksForAllT
 hound = "3.5"
 
 [package.metadata.bundle]
-name = "RustDesk"
+name = "HiDesk"
 identifier = "com.carriez.rustdesk"
 icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
 deb_depends = ["libgtk-3-0", "libxcb-randr0", "libxdo3", "libxfixes3", "libxcb-shape0", "libxcb-xfixes0", "libasound2", "libsystemd0", "curl", "libvdpau1", "libva2"]
@@ -163,5 +171,5 @@ lto = true
 codegen-units = 1
 panic = 'abort'
 strip = true
-#opt-level = 'z' # only have smaller size after strip
+opt-level = 'z' # only have smaller size after strip
 rpath = true

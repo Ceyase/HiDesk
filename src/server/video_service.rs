@@ -919,7 +919,7 @@ fn try_get_displays() -> ResultType<Vec<Display>> {
         }
         displays = Display::all()?;
     } else if displays.len() > 1 {
-        // If more than one displays exists, close RustDeskVirtualDisplay
+        // If more than one displays exists, close HiDeskVirtualDisplay
         if virtual_display::is_device_created() {
             virtual_display::close_device()
         }

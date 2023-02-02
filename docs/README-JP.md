@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../res/logo-header.svg" alt="RustDesk - Your remote desktop"><br>
+  <img src="../res/logo-header.svg" alt="HiDesk - Your remote desktop"><br>
   <a href="#free-public-servers">Servers</a> •
   <a href="#raw-steps-to-build">Build</a> •
   <a href="#how-to-build-with-docker">Docker</a> •
@@ -18,9 +18,9 @@ Rustで書かれた、設定不要ですぐに使えるリモートデスクト�
 
 ![image](https://user-images.githubusercontent.com/71636191/171661982-430285f0-2e12-4b1d-9957-4a58e375304d.png)
 
-RustDeskは誰からの貢献も歓迎します。 貢献するには [`docs/CONTRIBUTING.md`](CONTRIBUTING.md) を参照してください。
+HiDeskは誰からの貢献も歓迎します。 貢献するには [`docs/CONTRIBUTING.md`](CONTRIBUTING.md) を参照してください。
 
-[**RustDeskはどの様に動くのか?**](https://github.com/rustdesk/rustdesk/wiki/How-does-RustDesk-work%3F)
+[**HiDeskはどの様に動くのか?**](https://github.com/rustdesk/rustdesk/wiki/How-does-HiDesk-work%3F)
 
 [**BINARY DOWNLOAD**](https://github.com/rustdesk/rustdesk/releases)
 
@@ -120,7 +120,7 @@ VCPKG_ROOT=$HOME/vcpkg cargo run
 
 ### Wayland の場合、X11（Xorg）に変更します
 
-RustDeskはWaylandをサポートしていません。
+HiDeskはWaylandをサポートしていません。
  [こちら](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/) を確認して、XorgをデフォルトのGNOMEセッションとして構成します。
 
 ## Dockerでビルドする方法
@@ -152,7 +152,7 @@ target/debug/rustdesk
 target/release/rustdesk
 ```
 
-これらのコマンドをRustDeskリポジトリのルートから実行していることを確認してください。そうしないと、アプリケーションが必要なリソースを見つけられない可能性があります。また、 `install` や `run` などの他の cargo サブコマンドは、ホストではなくコンテナ内にプログラムをインストールまたは実行するため、現在この方法ではサポートされていないことに注意してください。
+これらのコマンドをHiDeskリポジトリのルートから実行していることを確認してください。そうしないと、アプリケーションが必要なリソースを見つけられない可能性があります。また、 `install` や `run` などの他の cargo サブコマンドは、ホストではなくコンテナ内にプログラムをインストールまたは実行するため、現在この方法ではサポートされていないことに注意してください。
 
 ## File Structure
 

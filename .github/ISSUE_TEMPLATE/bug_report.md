@@ -18,15 +18,15 @@ assignees: ''
 ...
 
 
-**How did you install `RustDesk`?**
+**How did you install `HiDesk`?**
 
 <!-- GitHub release, build from source, Windows portable version, etc. -->
 
 ---
 
-**RustDesk version and environment**
+**HiDesk version and environment**
 
 <!--
 In order to reproduce your issue, please add some information about the environment
-in which you're running RustDesk.
+in which you're running HiDesk.
 -->

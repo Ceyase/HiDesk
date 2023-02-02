@@ -38,14 +38,14 @@ def get_version():
 def parse_rc_features(feature):
     available_features = {
         'IddDriver': {
-            'zip_url': 'https://github.com/fufesou/RustDeskIddDriver/releases/download/v0.1/RustDeskIddDriver_x64.zip',
-            'checksum_url': 'https://github.com/fufesou/RustDeskIddDriver/releases/download/v0.1/checksum_md5',
+            'zip_url': 'https://github.com/fufesou/HiDeskIddDriver/releases/download/v0.1/HiDeskIddDriver_x64.zip',
+            'checksum_url': 'https://github.com/fufesou/HiDeskIddDriver/releases/download/v0.1/checksum_md5',
             'exclude': ['README.md'],
         },
         'PrivacyMode': {
-            'zip_url': 'https://github.com/fufesou/RustDeskTempTopMostWindow/releases/download/v0.1'
+            'zip_url': 'https://github.com/fufesou/HiDeskTempTopMostWindow/releases/download/v0.1'
                        '/TempTopMostWindow_x64_pic_en.zip',
-            'checksum_url': 'https://github.com/fufesou/RustDeskTempTopMostWindow/releases/download/v0.1/checksum_md5',
+            'checksum_url': 'https://github.com/fufesou/HiDeskTempTopMostWindow/releases/download/v0.1/checksum_md5',
             'include': ['WindowInjection.dll'],
         }
     }
@@ -294,7 +294,7 @@ def build_flutter_deb(version, features):
     os.system(
         'cp ../res/rustdesk-link.desktop tmpdeb/usr/share/applications/rustdesk-link.desktop')
     os.system(
-        'cp ../res/com.rustdesk.RustDesk.policy tmpdeb/usr/share/polkit-1/actions/')
+        'cp ../res/com.rustdesk.HiDesk.policy tmpdeb/usr/share/polkit-1/actions/')
     os.system(
         "echo \"#!/bin/sh\" >> tmpdeb/usr/share/rustdesk/files/polkit && chmod a+x tmpdeb/usr/share/rustdesk/files/polkit")
 
@@ -404,7 +404,7 @@ def main():
             return
         os.system('cargo build --release --features ' + features)
         # os.system('upx.exe target/release/rustdesk.exe')
-        os.system('mv target/release/rustdesk.exe target/release/RustDesk.exe')
+        os.system('mv target/release/rustdesk.exe target/release/HiDesk.exe')
         pa = os.environ.get('P')
         if pa:
             os.system(
@@ -413,7 +413,7 @@ def main():
         else:
             print('Not signed')
         os.system(
-            f'cp -rf target/release/RustDesk.exe rustdesk-{version}-win7-install.exe')
+            f'cp -rf target/release/HiDesk.exe rustdesk-{version}-win7-install.exe')
     elif os.path.isfile('/usr/bin/pacman'):
         # pacman -S -needed base-devel
         os.system("sed -i 's/pkgver=.*/pkgver=%s/g' res/PKGBUILD" % version)
@@ -461,12 +461,12 @@ def main():
             os.system('cargo bundle --release --features ' + features)
             if osx:
                 os.system(
-                    'strip target/release/bundle/osx/RustDesk.app/Contents/MacOS/rustdesk')
+                    'strip target/release/bundle/osx/HiDesk.app/Contents/MacOS/rustdesk')
                 os.system(
-                    'cp libsciter.dylib target/release/bundle/osx/RustDesk.app/Contents/MacOS/')
+                    'cp libsciter.dylib target/release/bundle/osx/HiDesk.app/Contents/MacOS/')
                 # https://github.com/sindresorhus/create-dmg
                 os.system('/bin/rm -rf *.dmg')
-                plist = "target/release/bundle/osx/RustDesk.app/Contents/Info.plist"
+                plist = "target/release/bundle/osx/HiDesk.app/Contents/Info.plist"
                 txt = open(plist).read()
                 with open(plist, "wt") as fh:
                     fh.write(txt.replace("</dict>", """
@@ -478,15 +478,15 @@ def main():
                     os.system('''
     # buggy: rcodesign sign ... path/*, have to sign one by one
     # install rcodesign via cargo install apple-codesign
-    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/rustdesk
-    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/libsciter.dylib
-    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/HiDesk.app/Contents/MacOS/rustdesk
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/HiDesk.app/Contents/MacOS/libsciter.dylib
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/HiDesk.app
     # goto "Keychain Access" -> "My Certificates" for below id which starts with "Developer ID Application:"
-    codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/*
-    codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/RustDesk.app
+    codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/HiDesk.app/Contents/MacOS/*
+    codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/HiDesk.app
     '''.format(pa))
-                os.system('create-dmg target/release/bundle/osx/RustDesk.app')
-                os.rename('RustDesk %s.dmg' %
+                os.system('create-dmg target/release/bundle/osx/HiDesk.app')
+                os.rename('HiDesk %s.dmg' %
                           version, 'rustdesk-%s.dmg' % version)
                 if pa:
                     os.system('''
@@ -500,7 +500,7 @@ def main():
     # https://gregoryszorc.com/docs/apple-codesign/0.16.0/apple_codesign_rcodesign.html#notarizing-and-stapling
     # p8 file is generated when you generate api key, download and put it under ~/.private_keys/
     rcodesign notarize --api-issuer {2} --api-key {3} --staple ./rustdesk-{1}.dmg
-    # verify:  spctl -a -t exec -v /Applications/RustDesk.app
+    # verify:  spctl -a -t exec -v /Applications/HiDesk.app
     '''.format(pa, version, os.environ.get('api-issuer'), os.environ.get('api-key')))
                 else:
                     print('Not signed')

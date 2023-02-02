@@ -29,10 +29,10 @@ extension Index on int {
 /// Window Manager
 /// mainly use it in `Main Window`
 /// use it in sub window is not recommended
-class RustDeskMultiWindowManager {
-  RustDeskMultiWindowManager._();
+class HiDeskMultiWindowManager {
+  HiDeskMultiWindowManager._();
 
-  static final instance = RustDeskMultiWindowManager._();
+  static final instance = HiDeskMultiWindowManager._();
 
   final List<int> _activeWindows = List.empty(growable: true);
   final List<AsyncCallback> _windowActiveCallbacks = List.empty(growable: true);
@@ -231,4 +231,4 @@ class RustDeskMultiWindowManager {
   }
 }
 
-final rustDeskWinManager = RustDeskMultiWindowManager.instance;
+final rustDeskWinManager = HiDeskMultiWindowManager.instance;

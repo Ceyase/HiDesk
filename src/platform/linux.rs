@@ -785,7 +785,7 @@ extern "C" fn breakdown_signal_handler(sig: i32) {
         stack.join("\n").to_string()
     );
     system_message(
-        "RustDesk",
+        "HiDesk",
         &format!("Got signal {} and exit.{}", sig, info),
         true,
     )

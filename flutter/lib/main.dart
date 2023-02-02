@@ -59,27 +59,27 @@ Future<void> main(List<String> args) async {
         runMultiWindow(
           argument,
           kAppTypeDesktopRemote,
-          'RustDesk - Remote Desktop',
+          'HiDesk - Remote Desktop',
         );
         WindowController.fromWindowId(windowId!)
-            .setTitle('RustDesk - Remote Desktop');
+            .setTitle('HiDesk - Remote Desktop');
         break;
       case WindowType.FileTransfer:
         desktopType = DesktopType.fileTransfer;
         runMultiWindow(
           argument,
           kAppTypeDesktopFileTransfer,
-          'RustDesk - File Transfer',
+          'HiDesk - File Transfer',
         );
         WindowController.fromWindowId(windowId!)
-            .setTitle('RustDesk - File Transfer');
+            .setTitle('HiDesk - File Transfer');
         break;
       case WindowType.PortForward:
         desktopType = DesktopType.portForward;
         runMultiWindow(
           argument,
           kAppTypeDesktopPortForward,
-          'RustDesk - Port Forward',
+          'HiDesk - Port Forward',
         );
         break;
       default:
@@ -139,7 +139,7 @@ void runMainApp(bool startService) async {
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     windowManager.setOpacity(1);
   });
-  windowManager.setTitle("RustDesk");
+  windowManager.setTitle("HiDesk");
 }
 
 void runMobileApp() async {
@@ -349,7 +349,7 @@ class _AppState extends State<App> {
         child: GetMaterialApp(
           navigatorKey: globalKey,
           debugShowCheckedModeBanner: false,
-          title: 'RustDesk',
+          title: 'HiDesk',
           theme: MyTheme.lightTheme,
           darkTheme: MyTheme.darkTheme,
           themeMode: MyTheme.currentThemeMode(),

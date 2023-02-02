@@ -3,7 +3,7 @@
 
 #define RUSTDESK_LIB_PATH "librustdesk.so"
 // #define RUSTDESK_LIB_PATH "/usr/lib/rustdesk/librustdesk.so"
-typedef bool (*RustDeskCoreMain)();
+typedef bool (*HiDeskCoreMain)();
 bool gIsConnectionManager = false;
 
 bool flutter_rustdesk_core_main() {
@@ -12,7 +12,7 @@ bool flutter_rustdesk_core_main() {
      fprintf(stderr,"load librustdesk.so failed\n");
      return true;
    }
-   auto core_main = (RustDeskCoreMain) dlsym(librustdesk,"rustdesk_core_main");
+   auto core_main = (HiDeskCoreMain) dlsym(librustdesk,"rustdesk_core_main");
    char* error;
    if ((error = dlerror()) != nullptr) {
        fprintf(stderr, "error finding rustdesk_core_main: %s", error);
